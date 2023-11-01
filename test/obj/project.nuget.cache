@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "ugxLDeM7Bb8p8odJNaqZa9q7fHpJxKXdmHzCqYoc7LLBkQeIIbdd+nQOeL71bsfq80alqjKF89UAZSAAUU1atg==",
+  "success": true,
+  "projectFilePath": "C:\\Repos\\LeetCode\\test\\test.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\wojci\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.20\\microsoft.windowsdesktop.app.ref.6.0.20.nupkg.sha512",
+    "C:\\Users\\wojci\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.20\\microsoft.netcore.app.ref.6.0.20.nupkg.sha512",
+    "C:\\Users\\wojci\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.20\\microsoft.aspnetcore.app.ref.6.0.20.nupkg.sha512",
+    "C:\\Users\\wojci\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.20\\microsoft.netcore.app.host.win-x64.6.0.20.nupkg.sha512"
+  ],
+  "logs": []
+}
