@@ -92,7 +92,21 @@ foreach (var x in ans)
 int[] cost = { 3,4,5,1,2 };
 Console.WriteLine(Tasks.CanCompleteCircuit(gas, cost));*/
 #endregion
-#region Candy
-int[] kids = { 29, 51, 87, 87, 72, 12 };
-Console.WriteLine(Tasks.Candy(kids));
+#region Candy - not ended
+/*int[] kids = { 29, 51, 87, 87, 72, 12 };
+Console.WriteLine(Tasks.Candy(kids));*/
 #endregion
+
+//Easy difficulty tasks
+EasyDifficulty Problems = new EasyDifficulty();
+#region TwoSum
+/*int[] nums = { 2, 7, 11, 15 };
+int[] result1 = Problems.TwoSum(nums, 9);
+int[] result =  Problems.FasterTwoSum(nums, 9);*/
+#endregion
+#region IsPalindrome
+/*int x = 10;
+Console.WriteLine(Problems.IsPalindrome(x));
+Console.WriteLine(Problems.NoStringIsPalindrome(x));*/
+#endregion
+
