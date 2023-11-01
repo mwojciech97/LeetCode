@@ -46,6 +46,7 @@ namespace LeetCode
             return result;
         }
         #endregion
+        #region IsPalindrome
         public bool IsPalindrome(int x)
         {
             if (x < 0) return false;
@@ -79,5 +80,36 @@ namespace LeetCode
             if(palindrome == number) return true;
             return false;
         }
+        #endregion
+        #region RomanToInteger
+        public int RomanToInt(string s)
+        {
+            Dictionary<char, int> RomanValues = new Dictionary<char, int>();
+            RomanValues.Add('M', 1000);
+            RomanValues.Add('D', 500);
+            RomanValues.Add('C', 100);
+            RomanValues.Add('L', 50);
+            RomanValues.Add('X', 10);
+            RomanValues.Add('V', 5);
+            RomanValues.Add('I', 1);
+            char[] chars = s.ToCharArray();
+            int answer = 0;
+            bool skipLast = false;
+            for(int i = chars.Length - 1; i > 0; i--)
+            {
+                if (RomanValues[chars[i]] > RomanValues[chars[i - 1]])
+                {
+                    if (chars[i] == 'M' || chars[i] == 'D') answer += RomanValues[chars[i]] - 100;
+                    if (chars[i] == 'C' || chars[i] == 'L') answer += RomanValues[chars[i]] - 10;
+                    if (chars[i] == 'X' || chars[i] == 'V') answer += RomanValues[chars[i]] - 1;
+                    if (i-- == 1) skipLast = true;
+                }
+                else answer += RomanValues[chars[i]];
+            }
+            if(skipLast) return answer;
+            return answer += RomanValues[chars[0]];
+        }
+       
+        #endregion
     }
 }
