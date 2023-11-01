@@ -109,4 +109,8 @@ int[] result =  Problems.FasterTwoSum(nums, 9);*/
 Console.WriteLine(Problems.IsPalindrome(x));
 Console.WriteLine(Problems.NoStringIsPalindrome(x));*/
 #endregion
+#region RomanToIntiger
+string s = "MCMXCIV";
+Console.WriteLine(Problems.RomanToInt(s));
+#endregion
 
