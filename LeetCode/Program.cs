@@ -110,7 +110,11 @@ Console.WriteLine(Problems.IsPalindrome(x));
 Console.WriteLine(Problems.NoStringIsPalindrome(x));*/
 #endregion
 #region RomanToIntiger
-string s = "MCMXCIV";
-Console.WriteLine(Problems.RomanToInt(s));
+/*string s = "MCMXCIV";
+Console.WriteLine(Problems.RomanToInt(s));*/
+#endregion
+#region Longest Common Prefix
+/*string[] strs = { "ab", "a" };
+Console.WriteLine(Problems.LongestCommonPrefix(strs));*/
 #endregion
 
