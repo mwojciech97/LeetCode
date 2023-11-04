@@ -109,7 +109,19 @@ namespace LeetCode
             if(skipLast) return answer;
             return answer += RomanValues[chars[0]];
         }
-       
+
+        #endregion
+        #region Longest Common Prefix
+        public string LongestCommonPrefix(string[] strs)
+        {
+            Array.Sort(strs);
+            for (int i = 0; i < strs[0].Length; i++)
+            {
+                if (!strs[0][i].Equals(strs[strs.Length - 1][i]))
+                    return strs[0].Substring(0, i);
+            }
+            return strs[0];
+        }
         #endregion
     }
 }
