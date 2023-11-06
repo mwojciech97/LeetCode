@@ -117,4 +117,8 @@ Console.WriteLine(Problems.RomanToInt(s));*/
 /*string[] strs = { "ab", "a" };
 Console.WriteLine(Problems.LongestCommonPrefix(strs));*/
 #endregion
+#region Valid Parentheses
+/*string s = "]";
+Console.WriteLine(Problems.IsValid(s));*/
+#endregion
 

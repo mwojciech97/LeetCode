@@ -123,5 +123,29 @@ namespace LeetCode
             return strs[0];
         }
         #endregion
+        #region Valid Parentheses
+        public bool IsValid(string s)
+        {
+            Stack<char> chars = new Stack<char>();
+            char[] parenthese = s.ToCharArray();
+            for(int i = 0; i < parenthese.Length; i++)
+            {
+                if (parenthese[i] == '(' ||
+                    parenthese[i] == '[' ||
+                    parenthese[i] == '{') chars.Push(parenthese[i]);
+                else
+                {
+                    char result;
+                    chars.TryPeek(out result);
+                    if (parenthese[i] == ')' && result == '(') chars.Pop();
+                    else if (parenthese[i] == ']' && result == '[') chars.Pop();
+                    else if (parenthese[i] == '}' && result == '{') chars.Pop();
+                    else return false;
+                }
+            }
+            if (chars.Count == 0) return true;
+            else return false;
+        }
+        #endregion
     }
 }
