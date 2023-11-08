@@ -121,4 +121,9 @@ Console.WriteLine(Problems.LongestCommonPrefix(strs));*/
 /*string s = "]";
 Console.WriteLine(Problems.IsValid(s));*/
 #endregion
+#region Find the Index of the First Occurrence in a String
+/*string haystack = "sad";
+string needle = "sad";
+Console.WriteLine(Problems.StrStr(haystack, needle));*/
+#endregion
 

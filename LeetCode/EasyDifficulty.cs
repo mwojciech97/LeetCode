@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.XPath;
 
 namespace LeetCode
 {
@@ -146,6 +147,59 @@ namespace LeetCode
             if (chars.Count == 0) return true;
             else return false;
         }
+        #endregion
+        #region Find the Index of the First Occurrence in a String
+        public int StrStr(string haystack, string needle)
+        {
+            if (needle.Length > haystack.Length) return -1;
+            for (int i = 0; i < haystack.Length; i++)
+            {
+                if (haystack[i] == needle[0])
+                    if (Check(haystack.Substring(i), needle)) return i;
+            }
+            return -1;
+
+            bool Check(string haystack, string needle)
+            {
+                int j = 0;
+                if (needle.Length > haystack.Length) return false;
+                for (int i = 0; i < haystack.Length & j < needle.Length; i++)
+                {
+                    if (haystack[i] != needle[j]) return false;
+                    j++;
+                }
+                return true;
+            }
+        }
+        
+        public int StrStrTuple(string haystack, string needle)
+        {
+            if (needle.Length > haystack.Length) return -1;
+            for(int i = 0; i < haystack.Length; i++)
+            {
+                if (haystack[i] == needle[0])
+                {
+                    var result = Check(haystack.Substring(i), needle);
+                    if (result.Item1) return i;
+                    else i = i + result.Item2;
+                }
+            }
+            return -1;
+
+            (bool, int) Check(string haystack, string needle)
+            {
+                int j = 0, first = 0;
+                if (needle.Length > haystack.Length) return (false, 0);
+                for (int i = 0; i < haystack.Length & j < needle.Length; i++)
+                {
+                    if (haystack[i] != needle[j]) return (false, 0);
+                    j++;
+                    if (haystack[i] == needle[0] && first == 0) first = i;
+                }
+                return (true, 1);
+            }
+        }
+        
         #endregion
     }
 }
