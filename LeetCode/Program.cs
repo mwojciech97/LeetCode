@@ -126,4 +126,20 @@ Console.WriteLine(Problems.IsValid(s));*/
 string needle = "sad";
 Console.WriteLine(Problems.StrStr(haystack, needle));*/
 #endregion
+#region Search Insert Position
+/*int[] nums = { 1, 3, 5, 6 };
+int target = 7;
+Console.WriteLine(Problems.SearchInsertDiff(nums, target));*/
+#endregion
+#region Length of Last Word
+/*string s = "Hello World";
+Console.WriteLine(Problems.LengthOfLastWord(s));*/
+#endregion
+#region Plus One
+/*int[] digits = { 9, 9, 9 };
+foreach (int i in Problems.PlusOne(digits))
+{
+    Console.WriteLine(i);
+}*/
+#endregion
 

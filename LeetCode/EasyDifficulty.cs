@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -199,7 +200,129 @@ namespace LeetCode
                 return (true, 1);
             }
         }
-        
+
+        #endregion
+        #region Search Insert Position
+        public int SearchInsertDiff(int[] nums, int target)
+        {
+            int n = nums.Length / 2;
+            if (nums[n] > target) return Search(0, n + 1);
+            if (nums[n] < target) return Search(n + 1, nums.Length);
+            if (nums[n] == target) return n;
+            return 0;
+            int Search(int min = 0, int max = 0)
+            {
+                for(int i = min; i < max; i++)
+                {
+                    if (target - nums[i] <= 0) return i;
+                }
+                return max;
+            }
+        }
+        public int SearchInsert(int[] nums, int target)
+        {
+            int n = nums.Length / 2;
+            while (n > -1)
+            {
+                if (nums[n] > target)
+                {
+                    if (n == 0) return 0;
+                    if (n == 1) n = 0;
+                    n = n - (n / 2);
+                    continue;
+                }
+                if (nums[n] == target) 
+                    return n;
+                if (nums[n] < target)
+                {
+                    if (n + 1 >= nums.Length) return n + 1;
+                    if (nums[n + 1] >= target)
+                        return n + 1;
+                    if (nums[n + 1] < target)
+                    {
+                        if (n == 1)
+                        {
+                            n += 1;
+                            continue;
+                        }
+                        n += n / 2;
+                    }
+                }
+            }
+            return n;
+        }
+        #endregion
+        #region Length of Last Word
+        public int LengthOfLastWord(string s)
+        {
+            s = s.Trim();
+            string[] stringArray = s.Split(' ');
+            return stringArray[stringArray.Length - 1].Length;
+        }
+        #endregion
+        #region Plus One
+        public int[] PlusOne(int[] digits)
+        {
+            for(int i = digits.Length - 1; i >= 0; i--)
+            {
+                digits[i] += 1;
+                if (digits[i] > 9)
+                {
+                    digits[i] = 0;
+                }
+                else break;
+            }
+            if (digits[0] == 0)
+            {
+                int[] result = new int[digits.Length + 1];
+                result[0] = 1;
+                Array.Copy(digits, 0, result, 1, digits.Length);
+                return result;
+            }
+            return digits;
+        }
+        public int[] PlusOneConcat(int[] digits)
+        {
+            for (int i = digits.Length - 1; i >= 0; i--)
+            {
+                digits[i] += 1;
+                if (digits[i] > 9)
+                {
+                    digits[i] = 0;
+                }
+                else break;
+            }
+            if (digits[0] == 0)
+            {
+                int[] result = new int[1];
+                result[0] = 1;
+                return result.Concat(digits).ToArray(); ;
+            }
+            return digits;
+        }
+        public int[] PlusOneForLoop(int[] digits)
+        {
+            for (int i = digits.Length - 1; i >= 0; i--)
+            {
+                digits[i] += 1;
+                if (digits[i] > 9)
+                {
+                    digits[i] = 0;
+                }
+                else break;
+            }
+            if (digits[0] == 0)
+            {
+                int[] result = new int[1];
+                result[0] = 1;
+                for (int i = 0; i < digits.Length; i++)
+                {
+                    result[i + 1] = digits[i];
+                }
+                return result;
+            }
+            return digits;
+        }
         #endregion
     }
 }
