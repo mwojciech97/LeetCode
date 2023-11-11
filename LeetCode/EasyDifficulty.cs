@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.XPath;
 
 namespace LeetCode
 {
@@ -121,6 +123,205 @@ namespace LeetCode
                     return strs[0].Substring(0, i);
             }
             return strs[0];
+        }
+        #endregion
+        #region Valid Parentheses
+        public bool IsValid(string s)
+        {
+            Stack<char> chars = new Stack<char>();
+            char[] parenthese = s.ToCharArray();
+            for(int i = 0; i < parenthese.Length; i++)
+            {
+                if (parenthese[i] == '(' ||
+                    parenthese[i] == '[' ||
+                    parenthese[i] == '{') chars.Push(parenthese[i]);
+                else
+                {
+                    char result;
+                    chars.TryPeek(out result);
+                    if (parenthese[i] == ')' && result == '(') chars.Pop();
+                    else if (parenthese[i] == ']' && result == '[') chars.Pop();
+                    else if (parenthese[i] == '}' && result == '{') chars.Pop();
+                    else return false;
+                }
+            }
+            if (chars.Count == 0) return true;
+            else return false;
+        }
+        #endregion
+        #region Find the Index of the First Occurrence in a String
+        public int StrStr(string haystack, string needle)
+        {
+            if (needle.Length > haystack.Length) return -1;
+            for (int i = 0; i < haystack.Length; i++)
+            {
+                if (haystack[i] == needle[0])
+                    if (Check(haystack.Substring(i), needle)) return i;
+            }
+            return -1;
+
+            bool Check(string haystack, string needle)
+            {
+                int j = 0;
+                if (needle.Length > haystack.Length) return false;
+                for (int i = 0; i < haystack.Length & j < needle.Length; i++)
+                {
+                    if (haystack[i] != needle[j]) return false;
+                    j++;
+                }
+                return true;
+            }
+        }
+        
+        public int StrStrTuple(string haystack, string needle)
+        {
+            if (needle.Length > haystack.Length) return -1;
+            for(int i = 0; i < haystack.Length; i++)
+            {
+                if (haystack[i] == needle[0])
+                {
+                    var result = Check(haystack.Substring(i), needle);
+                    if (result.Item1) return i;
+                    else i = i + result.Item2;
+                }
+            }
+            return -1;
+
+            (bool, int) Check(string haystack, string needle)
+            {
+                int j = 0, first = 0;
+                if (needle.Length > haystack.Length) return (false, 0);
+                for (int i = 0; i < haystack.Length & j < needle.Length; i++)
+                {
+                    if (haystack[i] != needle[j]) return (false, 0);
+                    j++;
+                    if (haystack[i] == needle[0] && first == 0) first = i;
+                }
+                return (true, 1);
+            }
+        }
+
+        #endregion
+        #region Search Insert Position
+        public int SearchInsertDiff(int[] nums, int target)
+        {
+            int n = nums.Length / 2;
+            if (nums[n] > target) return Search(0, n + 1);
+            if (nums[n] < target) return Search(n + 1, nums.Length);
+            if (nums[n] == target) return n;
+            return 0;
+            int Search(int min = 0, int max = 0)
+            {
+                for(int i = min; i < max; i++)
+                {
+                    if (target - nums[i] <= 0) return i;
+                }
+                return max;
+            }
+        }
+        public int SearchInsert(int[] nums, int target)
+        {
+            int n = nums.Length / 2;
+            while (n > -1)
+            {
+                if (nums[n] > target)
+                {
+                    if (n == 0) return 0;
+                    if (n == 1) n = 0;
+                    n = n - (n / 2);
+                    continue;
+                }
+                if (nums[n] == target) 
+                    return n;
+                if (nums[n] < target)
+                {
+                    if (n + 1 >= nums.Length) return n + 1;
+                    if (nums[n + 1] >= target)
+                        return n + 1;
+                    if (nums[n + 1] < target)
+                    {
+                        if (n == 1)
+                        {
+                            n += 1;
+                            continue;
+                        }
+                        n += n / 2;
+                    }
+                }
+            }
+            return n;
+        }
+        #endregion
+        #region Length of Last Word
+        public int LengthOfLastWord(string s)
+        {
+            s = s.Trim();
+            string[] stringArray = s.Split(' ');
+            return stringArray[stringArray.Length - 1].Length;
+        }
+        #endregion
+        #region Plus One
+        public int[] PlusOne(int[] digits)
+        {
+            for(int i = digits.Length - 1; i >= 0; i--)
+            {
+                digits[i] += 1;
+                if (digits[i] > 9)
+                {
+                    digits[i] = 0;
+                }
+                else break;
+            }
+            if (digits[0] == 0)
+            {
+                int[] result = new int[digits.Length + 1];
+                result[0] = 1;
+                Array.Copy(digits, 0, result, 1, digits.Length);
+                return result;
+            }
+            return digits;
+        }
+        public int[] PlusOneConcat(int[] digits)
+        {
+            for (int i = digits.Length - 1; i >= 0; i--)
+            {
+                digits[i] += 1;
+                if (digits[i] > 9)
+                {
+                    digits[i] = 0;
+                }
+                else break;
+            }
+            if (digits[0] == 0)
+            {
+                int[] result = new int[1];
+                result[0] = 1;
+                return result.Concat(digits).ToArray(); ;
+            }
+            return digits;
+        }
+        public int[] PlusOneForLoop(int[] digits)
+        {
+            for (int i = digits.Length - 1; i >= 0; i--)
+            {
+                digits[i] += 1;
+                if (digits[i] > 9)
+                {
+                    digits[i] = 0;
+                }
+                else break;
+            }
+            if (digits[0] == 0)
+            {
+                int[] result = new int[1];
+                result[0] = 1;
+                for (int i = 0; i < digits.Length; i++)
+                {
+                    result[i + 1] = digits[i];
+                }
+                return result;
+            }
+            return digits;
         }
         #endregion
     }
