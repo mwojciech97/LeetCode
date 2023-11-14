@@ -142,4 +142,9 @@ foreach (int i in Problems.PlusOne(digits))
     Console.WriteLine(i);
 }*/
 #endregion
+#region Add Binary
+string first = "0";
+string second = "0";
+Console.WriteLine(Problems.AddBinary(first, second));
+#endregion
 

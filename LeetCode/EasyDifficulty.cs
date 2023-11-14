@@ -324,5 +324,48 @@ namespace LeetCode
             return digits;
         }
         #endregion
+        #region Add Binary
+        public string AddBinary(string a, string b)
+        {
+            int aLen = a.Length, bLen = b.Length;
+            int add = 0;
+            char aC, bC;
+            string result = "", outcome = "";
+            while(aLen > 0 || bLen > 0)
+            {
+                aLen--;
+                bLen--;
+                if (aLen < 0) aC = '0';
+                else aC = a[aLen];
+                if (bLen < 0) bC = '0';
+                else bC = b[bLen];
+                
+                if (aC == '0' && bC == '0')
+                {
+                    if (add == 1) outcome += "1";
+                    else outcome += "0";
+                    add = 0;
+                }
+                else if ((aC == '0' && bC == '1') ||
+                        (aC == '1' && bC == '0'))
+                {
+                    if (add == 1) outcome += "0";
+                    else outcome += "1";
+                }
+                else if (aC == '1' && bC == '1')
+                {
+                    if (add == 1) outcome += "1";
+                    else outcome += "0";
+                    add = 1;
+                }
+            }
+            if (add == 1) outcome += "1";
+            for(int i = outcome.Length - 1; i > -1; i--)
+            {
+                result += outcome[i];
+            }
+            return result;
+        }
+        #endregion
     }
 }
