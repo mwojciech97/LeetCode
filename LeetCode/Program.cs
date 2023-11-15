@@ -143,8 +143,12 @@ foreach (int i in Problems.PlusOne(digits))
 }*/
 #endregion
 #region Add Binary
-string first = "0";
+/*string first = "0";
 string second = "0";
-Console.WriteLine(Problems.AddBinary(first, second));
+Console.WriteLine(Problems.AddBinary(first, second));*/
+#endregion
+#region Sqrt(x)
+int x = 8;
+Console.WriteLine(Problems.MySqrt(x));
 #endregion
 

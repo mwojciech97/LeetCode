@@ -14,9 +14,9 @@ namespace LeetCode
         public int[] TwoSum(int[] nums, int target)
         {
             int[] result = new int[2];
-            for(int i = 0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
-                for(int j = 0; j < nums.Length; j++)
+                for (int j = 0; j < nums.Length; j++)
                 {
                     if (nums[i] + nums[j] == target && j != i)
                     {
@@ -30,9 +30,9 @@ namespace LeetCode
         public int[] FasterTwoSum(int[] nums, int target)
         {
             int[] result = new int[2];
-            Dictionary<int,int> keyValuePairs = new Dictionary<int,int>();
+            Dictionary<int, int> keyValuePairs = new Dictionary<int, int>();
             keyValuePairs.Add(nums[0], 0);
-            for(int i = 1; i < nums.Length; i++)
+            for (int i = 1; i < nums.Length; i++)
             {
                 if (keyValuePairs.ContainsKey(target - nums[i]))
                 {
@@ -42,8 +42,8 @@ namespace LeetCode
                 }
                 if (!keyValuePairs.ContainsKey(nums[i]))
                     keyValuePairs.Add(nums[i], i);
-                
-                
+
+
             }
             return result;
         }
@@ -56,7 +56,7 @@ namespace LeetCode
             string number = x.ToString();
             char[] chars = number.ToCharArray();
             int j = chars.Length - 1;
-            for(int i = 0; i < chars.Length / 2 & j > -1; i++)
+            for (int i = 0; i < chars.Length / 2 & j > -1; i++)
             {
                 if (chars[i].Equals(chars[j]))
                 {
@@ -74,12 +74,12 @@ namespace LeetCode
         {
             if (x < 0) return false;
             int palindrome = 0, number = x;
-            while(palindrome < number && x > 0)
+            while (palindrome < number && x > 0)
             {
                 palindrome = palindrome * 10 + x % 10;
                 x = x / 10;
             }
-            if(palindrome == number) return true;
+            if (palindrome == number) return true;
             return false;
         }
         #endregion
@@ -97,7 +97,7 @@ namespace LeetCode
             char[] chars = s.ToCharArray();
             int answer = 0;
             bool skipLast = false;
-            for(int i = chars.Length - 1; i > 0; i--)
+            for (int i = chars.Length - 1; i > 0; i--)
             {
                 if (RomanValues[chars[i]] > RomanValues[chars[i - 1]])
                 {
@@ -108,7 +108,7 @@ namespace LeetCode
                 }
                 else answer += RomanValues[chars[i]];
             }
-            if(skipLast) return answer;
+            if (skipLast) return answer;
             return answer += RomanValues[chars[0]];
         }
 
@@ -130,7 +130,7 @@ namespace LeetCode
         {
             Stack<char> chars = new Stack<char>();
             char[] parenthese = s.ToCharArray();
-            for(int i = 0; i < parenthese.Length; i++)
+            for (int i = 0; i < parenthese.Length; i++)
             {
                 if (parenthese[i] == '(' ||
                     parenthese[i] == '[' ||
@@ -172,11 +172,11 @@ namespace LeetCode
                 return true;
             }
         }
-        
+
         public int StrStrTuple(string haystack, string needle)
         {
             if (needle.Length > haystack.Length) return -1;
-            for(int i = 0; i < haystack.Length; i++)
+            for (int i = 0; i < haystack.Length; i++)
             {
                 if (haystack[i] == needle[0])
                 {
@@ -212,7 +212,7 @@ namespace LeetCode
             return 0;
             int Search(int min = 0, int max = 0)
             {
-                for(int i = min; i < max; i++)
+                for (int i = min; i < max; i++)
                 {
                     if (target - nums[i] <= 0) return i;
                 }
@@ -231,7 +231,7 @@ namespace LeetCode
                     n = n - (n / 2);
                     continue;
                 }
-                if (nums[n] == target) 
+                if (nums[n] == target)
                     return n;
                 if (nums[n] < target)
                 {
@@ -263,7 +263,7 @@ namespace LeetCode
         #region Plus One
         public int[] PlusOne(int[] digits)
         {
-            for(int i = digits.Length - 1; i >= 0; i--)
+            for (int i = digits.Length - 1; i >= 0; i--)
             {
                 digits[i] += 1;
                 if (digits[i] > 9)
@@ -328,43 +328,49 @@ namespace LeetCode
         public string AddBinary(string a, string b)
         {
             int aLen = a.Length, bLen = b.Length;
-            int add = 0;
+            bool add = false;
             char aC, bC;
             string result = "", outcome = "";
-            while(aLen > 0 || bLen > 0)
+            while (aLen > 0 || bLen > 0)
             {
-                aLen--;
-                bLen--;
-                if (aLen < 0) aC = '0';
+                if (--aLen < 0) aC = '0';
                 else aC = a[aLen];
-                if (bLen < 0) bC = '0';
+                if (--bLen < 0) bC = '0';
                 else bC = b[bLen];
-                
+
                 if (aC == '0' && bC == '0')
                 {
-                    if (add == 1) outcome += "1";
+                    if (add) outcome += "1";
                     else outcome += "0";
-                    add = 0;
+                    add = false;
                 }
                 else if ((aC == '0' && bC == '1') ||
                         (aC == '1' && bC == '0'))
                 {
-                    if (add == 1) outcome += "0";
+                    if (add) outcome += "0";
                     else outcome += "1";
                 }
                 else if (aC == '1' && bC == '1')
                 {
-                    if (add == 1) outcome += "1";
+                    if (add) outcome += "1";
                     else outcome += "0";
-                    add = 1;
+                    add = true;
                 }
             }
-            if (add == 1) outcome += "1";
-            for(int i = outcome.Length - 1; i > -1; i--)
+            if (add) outcome += "1";
+            for (int i = outcome.Length - 1; i > -1; i--)
             {
                 result += outcome[i];
             }
             return result;
+        }
+        #endregion
+        #region Sqrt(x)
+        public int MySqrt(int x)
+        {
+            double res = Math.Sqrt(x);
+            x = int.Parse(Math.Floor(res).ToString());
+            return x;
         }
         #endregion
     }
