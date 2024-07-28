@@ -148,7 +148,21 @@ string second = "0";
 Console.WriteLine(Problems.AddBinary(first, second));*/
 #endregion
 #region Sqrt(x)
-int x = 8;
-Console.WriteLine(Problems.MySqrt(x));
+//int x = 8;
+//Console.WriteLine(Problems.MySqrt(x));
+#endregion
+#region Merge Two Sorted Lists
+ListNode list1 = new ListNode();
+ListNode list2 = new ListNode();
+list1.val = 1;
+list1.next = new ListNode(2, new ListNode(4, null));
+list2.val = 1;
+list2.next = new ListNode(2, new ListNode(3, null));
+ListNode ans = Problems.MergeTwoLists(list1, list2);
+while (ans != null)
+{
+    Console.WriteLine(ans.val);
+    ans = ans.next;
+}
 #endregion
 
